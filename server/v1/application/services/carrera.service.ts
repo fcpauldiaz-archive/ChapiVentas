@@ -7,7 +7,7 @@ export class CarreraService {
   }
 
   save(carrera) {
-    return this._db.dbInsert('carreras', JSON.stringify(carrera));
+    return this._db.insertOne('carreras', (carrera));
   }
 
   obtenerCarreras() {

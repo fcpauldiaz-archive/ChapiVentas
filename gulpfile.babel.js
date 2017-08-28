@@ -29,7 +29,8 @@ gulp.task('copy', () =>
 gulp.task('typescript', () => {
   gulp.src('server/v1/**/*.ts')
     .pipe(ts({
-        noImplicitAny: false
+        noImplicitAny: false,
+        allowJs: true
     }))
     .js.pipe(gulp.dest('dist/server/v1/'))
 });

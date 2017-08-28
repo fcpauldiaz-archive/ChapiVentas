@@ -10,7 +10,7 @@ router.get('/health-check', (req, res) =>
 );
 
 // mount user routes at /users
-router.use('/users', userRoutes);
+// router.use('/users', userRoutes);
 
 // mount post routes at /post
 router.use('/carrera', carreraRoutes);

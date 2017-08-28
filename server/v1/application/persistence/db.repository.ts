@@ -6,11 +6,18 @@ connectDB((err) => {
   }
 });
 
-const dbInsert = async (location, data) => {
+const insertMany = async (location, data) => {
   const _db = getDB();
   const response = await _db.collection(location).insertMany(data);
   return response;
 }
+
+const insertOne = async (location, data) => {
+   const _db = getDB();
+  const response = await _db.collection(location).insert(data);
+  return response;
+}
+
 
 const dbList = async (location) => {
   const _db = getDB();
@@ -18,4 +25,4 @@ const dbList = async (location) => {
 }
 
 
-export default { dbInsert, dbList };
+export default { insertMany, dbList, insertOne };
