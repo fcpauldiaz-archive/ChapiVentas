@@ -1,4 +1,4 @@
-import { ValorMonetario } from 'valor_monetario.model.';
+import { ValorMonetario } from './valor_monetario.model';
 export class Producto {
 
   nombreProducto: string;
