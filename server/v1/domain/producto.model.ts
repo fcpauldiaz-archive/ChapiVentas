@@ -1,11 +1,12 @@
+import { ValorMonetario } from 'valor_monetario.model.';
 export class Producto {
 
   nombreProducto: string;
-  precio: number
+  valorMonetario: ValorMonetario;
 
-  constructor(nombre: string, precio: number) {
+  constructor(nombre: string, precio: number, moneda: string) {
     this.nombreProducto = nombre;
-    this.precio = precio;
+    this.valorMonetario = new ValorMonetario(moneda, precio);
   }
 
 }
