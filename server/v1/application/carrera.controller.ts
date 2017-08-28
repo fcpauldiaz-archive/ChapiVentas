@@ -6,7 +6,7 @@ const getAll = async (req, res ) => {
   try {
 
     const c_service = new CarreraService(_db);
-    const carreras = c_service.obtenerCarreras();
+    const carreras = await  c_service.obtenerCarreras();
     return res.json(carreras);
   } catch (err) {
     return res.json(err);

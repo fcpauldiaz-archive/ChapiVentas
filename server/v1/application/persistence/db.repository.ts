@@ -21,7 +21,7 @@ const insertOne = async (location, data) => {
 
 const dbList = async (location) => {
   const _db = getDB();
-  return await _db.collection(location).find();
+  return await _db.collection(location).find().toArray();
 }
 
 

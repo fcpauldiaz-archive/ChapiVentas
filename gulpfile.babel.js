@@ -60,7 +60,7 @@ gulp.task('babel', () =>
 gulp.task('nodemon', ['copy', 'babel', 'typescript'], () =>
   plugins.nodemon({
     script: path.join('dist', 'index.js'),
-    ext: 'js',
+    ext: 'js ts',
     ignore: ['node_modules/**/*.js', 'dist/**/*.js'],
     tasks: ['copy', 'babel', 'typescript']
   })

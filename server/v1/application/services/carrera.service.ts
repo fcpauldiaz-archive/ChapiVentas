@@ -10,8 +10,8 @@ export class CarreraService {
     return this._db.insertOne('carreras', (carrera));
   }
 
-  obtenerCarreras() {
-    return this._db.dbList('carreras');
+  async obtenerCarreras() {
+    return await this._db.dbList('carreras');
   }
 
 
