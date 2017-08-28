@@ -1,4 +1,4 @@
-class ProductService {
+export class ProductService {
 
   _db: any;
 
@@ -7,7 +7,10 @@ class ProductService {
   }
 
   saveProducts(products: string[]) {
-    return this._db.insertMany(products);
+    return this._db.insertMany('products', products);
   }
+
+
+
 
 }

@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import httpStatus from 'http-status';
-import User from '../models/user.model';
+import User from '../domain/user.model';
 
 /**
  * Load user and append to req.

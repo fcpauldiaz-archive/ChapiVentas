@@ -2,7 +2,7 @@ import express from 'express';
 import validate from 'express-validation';
 import expressJwt from 'express-jwt';
 import paramValidation from '../../../config/param-validation';
-import userCtrl from '../controllers/user.controller';
+import userCtrl from '../application/user.controller';
 import config from '../../../config/config';
 import upload from '../../../config/aws';
 
