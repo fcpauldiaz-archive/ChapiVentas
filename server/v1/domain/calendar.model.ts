@@ -1,4 +1,5 @@
 import { CalendarDate } from './calendar_date.model';
+import { Promocion } from './promocion.model';
 
 export class Calendar {
 
@@ -12,7 +13,7 @@ export class Calendar {
     let bestDate = 0;
     let cantEstudiantesActual = -1;
     for (let i = 0; i < this.calendar.length; i++) {
-      CalendarDate fecha = this.calendar[i];
+      const fecha = this.calendar[i];
       if (fecha.cantidadEstudiantes > cantEstudiantesActual) {
         cantEstudiantesActual = fecha.cantidadEstudiantes;
         bestDate = i;

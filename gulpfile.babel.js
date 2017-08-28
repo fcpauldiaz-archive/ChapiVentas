@@ -30,7 +30,7 @@ gulp.task('typescript', () => {
   gulp.src('server/v1/**/*.ts')
     .pipe(ts({
         noImplicitAny: false,
-        allowJs: true
+        lib: ['es5', 'es2015', 'es2016']
     }))
     .js.pipe(gulp.dest('dist/server/v1/'))
 });
@@ -57,7 +57,7 @@ gulp.task('babel', () =>
 );
 
 // Start server with restart on file changes
-gulp.task('nodemon', ['copy', 'babel', 'typescript'], () =>
+gulp.task('nodemon', ['copy', 'typescript', 'babel'], () =>
   plugins.nodemon({
     script: path.join('dist', 'index.js'),
     ext: 'js ts',

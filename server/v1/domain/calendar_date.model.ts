@@ -1,7 +1,7 @@
 import { Carrera } from './carrera.model';
 import { Promocion } from './promocion.model';
 
-class CalendarDate {
+export class CalendarDate {
 
   fechaEvento: Date;
   cantidadEstudiantes: number;
@@ -15,6 +15,7 @@ class CalendarDate {
   }
 
   agregarPromocion(promocion: Promocion) {
+    //max promotions per day
     if (this.promociones.length < 10) {
       this.promociones.push(promocion);
       return true;
