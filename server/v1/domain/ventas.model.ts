@@ -5,7 +5,7 @@ export class ReporteVentas implements ReporteVentasInterface {
 
   ventas: ReporteVenta[];
 
-  getVentasPorMes(fechaInicio: Date, fechaFinal: Date): Array {
+  getVentasPorFecha(fechaInicio: Date, fechaFinal: Date): Array<string> {
     let ventasValidas = [];
     for (let i = 0; i < this.ventas.length; i++) {
       const venta = this.ventas[i];
@@ -16,11 +16,11 @@ export class ReporteVentas implements ReporteVentasInterface {
     return ventasValidas;
   }
 
-  getVentasMonetarias(fechaInicio: Date, fechaFinal: Date): number {
+  getVentasMonetariasPorFecha(fechaInicio: Date, fechaFinal: Date): number {
     let totalVentas = 0.0
     for (let i = 0; i < this.ventas.length; i++) {
       const venta = this.ventas[i];
-      if (fechaInicio > venta.fecha && venta.fecha < fechaFinal) {
+      if (fechaInicio > venta.fecha.fechaEvento && venta.fecha.fechaEvento < fechaFinal) {
         totalVentas = totalVentas + venta.totalVenta;
       }
     }

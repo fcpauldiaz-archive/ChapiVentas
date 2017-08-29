@@ -16,7 +16,7 @@ const getAll = async (req, res ) => {
 const createNewCarrera = async (req, res) => {
   try {
     const c_service = new CarreraService(_db);
-    const carrera = new Carrera(req.body.nombre, req.body.descripcion);
+    const carrera = new Carrera(req.body.nombre, req.body.descripcion, req.body.estudiantes);
     const saved_carrera = c_service.save(carrera);
     return res.json(saved_carrera);
   } catch (e){
