@@ -1,3 +1,5 @@
+import { Producto } from './producto.model';
+
 export class Promocion {
 
   descuento: number;
@@ -5,6 +7,7 @@ export class Promocion {
   descripcionPromocion: string;
   fechaInicioPromo: Date;
   fechaFinalPromo: Date;
+  productos: Producto[];
 
   constructor(tipo: string, des: number, desc: string, inicio: Date, final: Date) {
     this.descuento = des;

@@ -4,14 +4,11 @@ import { Promocion } from './promocion.model';
 export class CalendarDate {
 
   fechaEvento: Date;
-  cantidadEstudiantes: number;
-  carreraEstudiantes: Carrera;
+  carreras: Carrera[];
   promociones: Promocion[];
 
-  constructor(fecha: Date, cant: number, carrera: Carrera) {
+  constructor(fecha: Date) {
     this.fechaEvento = fecha;
-    this.cantidadEstudiantes = cant;
-    this.carreraEstudiantes = carrera;
   }
 
   agregarPromocion(promocion: Promocion) {
@@ -21,6 +18,14 @@ export class CalendarDate {
       return true;
     }
     return false;
+  }
+
+  calcularCantidadEstudiantes() {
+    let cant = 0;
+    for (let i = 0; i < this.carreras.length; i++) {
+      cant += this.carreras[i].cantidadEstudiantes;
+    }
+    return cant;
   }
 
 
