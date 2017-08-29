@@ -11,7 +11,7 @@ export class CalendarDate {
     this.fechaEvento = fecha;
   }
 
-  agregarPromocion(promocion: Promocion) {
+  agregarPromocion(promocion: Promocion): boolean {
     //max promotions per day
     if (this.promociones.length < 10) {
       this.promociones.push(promocion);
@@ -20,7 +20,7 @@ export class CalendarDate {
     return false;
   }
 
-  calcularCantidadEstudiantes() {
+  calcularCantidadEstudiantes(): number {
     let cant = 0;
     for (let i = 0; i < this.carreras.length; i++) {
       cant += this.carreras[i].cantidadEstudiantes;

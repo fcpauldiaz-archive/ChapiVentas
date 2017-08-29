@@ -14,14 +14,25 @@ export class Calendar {
     let cantEstudiantesActual = -1;
     for (let i = 0; i < this.calendar.length; i++) {
       const fecha = this.calendar[i];
-      if (fecha.cantidadEstudiantes > cantEstudiantesActual) {
-        cantEstudiantesActual = fecha.cantidadEstudiantes;
+      if (fecha.calcularCantidadEstudiantes() > cantEstudiantesActual) {
+        cantEstudiantesActual = fecha.calcularCantidadEstudiantes();
         bestDate = i;
       }
     }
     const calendarDate = this.calendar[bestDate];
     return calendarDate.agregarPromocion(promocion);
 
+  }
+
+  calcularCantidadEstudiantesFecha(inicio: Date, final: Date): number {
+    let cant = 0;
+    for (let i = 0; i < this.calendar.length; i++) {
+      const fecha = this.calendar[i];
+      if (fecha.fechaEvento > inicio && fecha.fechaEvento < final) {
+        cant += fecha.calcularCantidadEstudiantes();
+      }
+    }
+    return cant;
   }
 
 }

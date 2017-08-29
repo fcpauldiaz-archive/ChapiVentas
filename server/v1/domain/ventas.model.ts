@@ -1,15 +1,15 @@
 import { ReporteVenta } from './venta.model';
-import { ReporteVentasInterface } from './interface/ventas.interface';
+import { ReporteVentasInterface } from './interfaces/ventas.interface';
+
 export class ReporteVentas implements ReporteVentasInterface {
 
   ventas: ReporteVenta[];
-
 
   getVentasPorMes(fechaInicio: Date, fechaFinal: Date): Array {
     let ventasValidas = [];
     for (let i = 0; i < this.ventas.length; i++) {
       const venta = this.ventas[i];
-      if (fechaInicio > venta.fecha && venta.fecha < fechaFinal) {
+      if (fechaInicio > venta.fecha.fechaEvento && venta.fecha.fechaEvento < fechaFinal) {
         ventasValidas.push(venta);
       }
     }
