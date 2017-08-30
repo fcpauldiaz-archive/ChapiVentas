@@ -20,7 +20,7 @@ import APIError from '../server/v1/infraestructure/APIError';
 
 // The Swagger document (require it, build it programmatically, fetch it from a URL, ...)
 const spec = fs.readFileSync('server/v1/docs/api_docs.yml', 'utf8');
-const reactDocs = fs.readFileSync('react_docs/index.html', 'utf8');
+//const reactDocs = fs.readFileSync('react_docs/index.html', 'utf8');
 const swaggerDoc = jsyaml.safeLoad(spec);
 
 
@@ -62,9 +62,9 @@ app.use('/api', routes);
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDoc, false, {}, '.swagger-ui .topbar { background-color: rgb(112, 111, 111); }'));
 
 app.use(express.static('react_docs/'));
-app.get('/docs/', (req, res) => {
-  res.send(reactDocs);
-});
+// app.get('/docs/', (req, res) => {
+//   res.send(reactDocs);
+// });
 
 // if error is not an instanceOf APIError, convert it.
 app.use((err, req, res, next) => {
