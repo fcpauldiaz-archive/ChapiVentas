@@ -2,17 +2,17 @@ import express from 'express';
 import validate from 'express-validation';
 import expressJwt from 'express-jwt';
 import paramValidation from '../../../config/param-validation';
-import carreraController from '../application/carrera.controller';
+import promocionController from '../application/promocion.controller';
 import config from '../../../config/config';
 
 const router = express.Router(); // eslint-disable-line new-cap
 
 /**
- * GET /api/carrera
+ * GET /api/promocion
  */
 router.route('/')
-  .get(carreraController.getAll)
-  .post(carreraController.createNewCarrera);
+  .get(promocionController.getMesPromociones)
+  .post(promocionController.createNewPromocion);
 
 
 export default router;

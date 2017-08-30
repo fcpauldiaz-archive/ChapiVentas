@@ -1,6 +1,7 @@
 import express from 'express';
 import userRoutes from './user.route';
 import carreraRoutes from './carrera.route';
+import promocionRoutes from './promocion.route';
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -14,6 +15,7 @@ router.get('/health-check', (req, res) =>
 
 // mount post routes at /post
 router.use('/carrera', carreraRoutes);
+router.use('/promocion', promocionRoutes);
 
 
 export default router;
