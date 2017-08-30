@@ -10,6 +10,10 @@ export class ProductService {
     return this._db.insertMany('products', products);
   }
 
+  async save(product) {
+    return await this._db.insertOne('products', product);
+  }
+
 
 
 

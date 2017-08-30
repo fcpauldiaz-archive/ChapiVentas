@@ -41,7 +41,7 @@ build/Release
 # Dependency directory
 node_modules/*
 react_docs/*
-
+server/v1/event_sourcing/node_modules/*
 # Optional npm cache directory
 .npm
 
