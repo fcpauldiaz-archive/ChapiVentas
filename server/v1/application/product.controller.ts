@@ -18,7 +18,7 @@ const createProduct = async (req, res) => {
 const getProducts = async (req, res) => {
   try {
     const p_service = new ProductService(_db);
-    const products =  p_service = await p_service.getAllProducts();
+    const products =  await p_service.getAllProducts();
     return res.json(products);
   } catch (e) {
     return res.json(e);

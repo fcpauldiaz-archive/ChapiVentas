@@ -6,8 +6,8 @@ export class PromocionService {
     this._db = dbService;
   }
 
-  save(promocion) {
-    return this._db.insertOne('promociones', (promocion));
+  async save(promocion) {
+    return await this._db.insertOne('promociones', (promocion));
   }
 
   async obtenerPromociones() {
