@@ -9,7 +9,7 @@ import ts from "gulp-typescript";
 const plugins = gulpLoadPlugins();
 
 const paths = {
-  js: ['./**/*.js', '!dist/**', '!node_modules/**', '!coverage/**', '!react_docs/**'],
+  js: ['./**/*.js', '!dist/**', '!node_modules/**', '!coverage/**', '!react_docs/**', '!server/v1/event_sourcing/node_modules/**'],
   nonJs: ['./package.json', './.gitignore', './.env'],
   tests: './server/tests/*.js'
 };
@@ -61,7 +61,7 @@ gulp.task('nodemon', ['copy', 'typescript', 'babel'], () =>
   plugins.nodemon({
     script: path.join('dist', 'index.js'),
     ext: 'js ts',
-    ignore: ['node_modules/**/*.js', 'dist/**/*.js'],
+    ignore: ['node_modules/**/*.js', 'dist/**/*.js', 'server/v1/event_sourcing/node_modules/**/*.js'],
     tasks: ['copy', 'babel', 'typescript']
   })
 );

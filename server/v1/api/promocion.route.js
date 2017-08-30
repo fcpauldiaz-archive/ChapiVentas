@@ -14,5 +14,7 @@ router.route('/')
   .get(promocionController.getMesPromociones)
   .post(promocionController.createNewPromocion);
 
+router.route('/query')
+  .get(promocionController.getPromocionFecha);
 
 export default router;

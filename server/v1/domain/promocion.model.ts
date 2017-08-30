@@ -13,8 +13,8 @@ export class Promocion {
     this.descuento = des;
     this.tipoPromocion = tipo;
     this.descripcionPromocion = desc;
-    this.fechaInicioPromo = inicio;
-    this.fechaFinalPromo = final;
+    this.fechaInicioPromo = new Date(inicio);
+    this.fechaFinalPromo = new Date(final);
   }
 
 }

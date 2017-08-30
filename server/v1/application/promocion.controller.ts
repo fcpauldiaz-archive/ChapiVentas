@@ -20,10 +20,23 @@ const createNewPromocion = async (req, res) => {
     const saved_promocion = p_service.save(promocion);
     return res.json(saved_promocion);
 
-  }catch (e) {
+  } catch (e) {
     console.log(e);
     return res.json(e);
   }
 }
 
-export default { getMesPromociones, createNewPromocion };
+const getPromocionFecha = async (req, res) => {
+  try {
+    const p_service = new PromocionService(_db);
+    const fechaInicio = new Date(req.query.fechaInicio);
+    const fechaFinal = new Date(req.query.fechaFinal);
+    const query = await p_service.obtenerPromocionesPorFecha(fechaInicio, fechaFinal);
+    return res.json(query);
+  } catch (e) {
+    console.log(e)
+    return res.json(e);
+  }
+}
+
+export default { getMesPromociones, createNewPromocion, getPromocionFecha };
