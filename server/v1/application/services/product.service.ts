@@ -14,6 +14,10 @@ export class ProductService {
     return await this._db.insertOne('products', product);
   }
 
+  async getAllProducts() {
+    return await this._db.dbList('products');
+  }
+
 
 
 
