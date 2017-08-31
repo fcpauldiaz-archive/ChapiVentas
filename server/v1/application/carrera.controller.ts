@@ -1,6 +1,8 @@
 import { Carrera } from '../domain/carrera.model';
 import _db  from './persistence/db.repository';
 import { CarreraService } from './services/carrera.service';
+import { CarreraReadingService } from './services/reading/carrera.reading'
+import { CarreraStorageService } from './services/storage/carrera.storage'
 
 /**
  * Get all entities
@@ -9,7 +11,7 @@ import { CarreraService } from './services/carrera.service';
 const getAll = async (req, res ) => {
   try {
 
-    const c_service = new CarreraService(_db);
+    const c_service = new CarreraReadingService(_db);
     const carreras = await  c_service.obtenerCarreras();
 
     return res.json(carreras);
@@ -28,13 +30,12 @@ const getAll = async (req, res ) => {
 const createNewCarrera = async (req, res) => {
   try {
 
-    const c_service = new CarreraService(_db);
+    const c_service = new CarreraStorageService(_db);
     const carrera = new Carrera(req.body.nombre, req.body.descripcion, req.body.estudiantes);
     const saved_carrera = c_service.save(carrera);
 
     return res.json(saved_carrera);
   } catch (e){
-    console.log(e);
     return res.json(e);
   }
 }
