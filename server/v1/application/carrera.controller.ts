@@ -1,8 +1,11 @@
 import { Carrera } from '../domain/carrera.model';
 import _db  from './persistence/db.repository';
 import { CarreraService } from './services/carrera.service';
-import { CarreraReadingService } from './services/reading/carrera.reading'
-import { CarreraStorageService } from './services/storage/carrera.storage'
+import { CarreraReadingService } from './services/reading/carrera.reading';
+import { CarreraStorageService } from './services/storage/carrera.storage';
+
+import { NombreCarrera } from '../domain/value_objects/nombre_carrera.model';
+import { DescripcionCarrera } from '../domain/value_objects/descripcion_carrera.model';
 
 /**
  * Get all entities
@@ -28,14 +31,32 @@ const getAll = async (req, res ) => {
  * @return {string[]} List of entities
  */
 const createNewCarrera = async (req, res) => {
+  let invalidParams = [];
+  let carreraNombre: NombreCarrera = new NombreCarrera(req.body.nombre);
+  let descripcionCarrera: DescripcionCarrera = new DescripcionCarrera(req.body.descripcion);
+  
+
+  if(!carreraNombre.validateNombreCarrera()) {
+    invalidParams.push("nombre")
+  }
+
+  if(!descripcionCarrera.validateDescripcionCarrera()) {
+    invalidParams.push("carrera")
+  }
+
+  if(invalidParams.length > 0) {
+    res.status(400);
+    return res.json({"mensaje": "Parámetros inválidos", "parametros_invalidos": invalidParams})
+  }
+
   try {
-
     const c_service = new CarreraStorageService(_db);
-    const carrera = new Carrera(req.body.nombre, req.body.descripcion, req.body.estudiantes);
+    const carrera = new Carrera(carreraNombre, descripcionCarrera, req.body.estudiantes);
     const saved_carrera = c_service.save(carrera);
-
+    res.status(200);
     return res.json(saved_carrera);
   } catch (e){
+    res.status(500);
     return res.json(e);
   }
 }

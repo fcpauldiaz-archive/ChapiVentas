@@ -1,10 +1,15 @@
+import { NombreCarrera } from './value_objects/nombre_carrera.model';
+import { DescripcionCarrera } from './value_objects/descripcion_carrera.model';
+
+
+
 export class Carrera {
 
-  nombreCarrera: string;
-  descripcionCarrera: string;
+  nombreCarrera: NombreCarrera;
+  descripcionCarrera: DescripcionCarrera;
   cantidadEstudiantes: number;
 
-  constructor(nombre: string, descripcion: string, estudiantes: number) {
+  constructor(nombre: NombreCarrera, descripcion: DescripcionCarrera, estudiantes: number) {
     this.nombreCarrera = nombre;
     this.descripcionCarrera = descripcion;
     this.cantidadEstudiantes = estudiantes;
