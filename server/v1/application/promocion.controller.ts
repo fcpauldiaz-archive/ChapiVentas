@@ -19,7 +19,7 @@ const sendEvent = async(topic, data) => {
     const ch = await conn.createChannel();
     //await ch.assertQueue(topic);
     ch.sendToQueue(topic, new Buffer.from(JSON.stringify(data)););
-    console.log('message sent');
+    console.log('promotion sent');
  } catch (e) {
    console.log(e);
  }

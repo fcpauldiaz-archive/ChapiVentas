@@ -86,11 +86,13 @@ paths:
         in: 'query'
         description: 'Fecha inicial Promo'
         required: true
+        example: '2017-08-02'
         type: 'string'
       - name: 'fechaFinal'
         in: 'query'
         description: 'Fecha Final Promo'
         required: true
+        example: '2017-08-02'
         type: string
       responses:
         200:
