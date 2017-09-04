@@ -51,6 +51,70 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
+  /carrera/fecha/mes:
+    post:
+      tags:
+      - "Carrera Fechas"
+      summary: "Crear una fecha para carrera"
+      description: "Creación de un registro en donde se almacene una fecha para una carrera"
+      operationId: "postCarreraFechaMes"
+      parameters:
+      - name: "Mes"
+        in: "body"
+        description: "Mes"
+        required: true
+        schema:
+          $ref: "#/definitions/CarreraFechaMes"
+
+      responses:
+        200:
+          description: ""
+          schema:
+            type: "string"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error" 
+  /carrera/fecha:
+    post:
+      tags:
+      - "Carrera Fechas"
+      summary: "Crear una fecha para carrera"
+      description: "Creación de un registro en donde se almacene una fecha para una carrera"
+      operationId: "postCarreraFecha"
+      parameters:
+      - name: "Carrera Fecha"
+        in: "body"
+        description: "Login object"
+        required: true
+        schema:
+          $ref: "#/definitions/CarreraFecha"
+
+      responses:
+        200:
+          description: ""
+          schema:
+            type: "string"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error" 
+    get:
+      tags:
+      - "Carrera Fechas"
+      summary: "Obtener todas las fechas de una carrera"
+      description: "Retorna todas las fechas importantes para una carrera"
+      operationId: "getCarreraFecha"
+
+      responses:
+        200:
+          description: ""
+          schema:
+            type: "string"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"      
   /promocion:
     post:
       tags:
@@ -128,7 +192,18 @@ definitions:
         type: string
       estudiantes:
         type: integer
-
+  CarreraFecha: 
+    type: object
+    properties:
+      carrera_id:
+        type: string
+      fecha:
+        type: string
+  CarreraFechaMes: 
+    type: object
+    properties:
+      month:
+        type: integer
   Error:
     type: "object"
     properties:
