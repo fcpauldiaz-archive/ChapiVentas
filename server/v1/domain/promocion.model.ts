@@ -1,15 +1,18 @@
 import { Producto } from './producto.model';
+import { DescripcionPromocion } from './value_objects/descripcion_promocion.model';
+import { TipoPromocion } from './value_objects/tipo_promocion.model';
 
 export class Promocion {
 
   descuento: number;
-  tipoPromocion: string;
-  descripcionPromocion: string;
+  tipoPromocion: TipoPromocion;
+  descripcionPromocion: DescripcionPromocion;
   fechaInicioPromo: Date;
   fechaFinalPromo: Date;
   productos: Producto[];
 
-  constructor(tipo: string, des: number, desc: string, inicio: Date, final: Date) {
+  constructor(tipo: TipoPromocion, des: number, desc: DescripcionPromocion, inicio: Date, final: Date) {
+
     this.descuento = des;
     this.tipoPromocion = tipo;
     this.descripcionPromocion = desc;

@@ -1,4 +1,6 @@
 import { Promocion } from '../domain/promocion.model';
+import { TipoPromocion } from '../domain/value_objects/tipo_promocion.model';
+import { DescripcionPromocion } from '../domain/value_objects/descripcion_promocion.model';
 import _db  from './persistence/db.repository';
 import { PromocionService } from './services/promocion.service';
 const amqp = require('amqplib');
@@ -29,7 +31,9 @@ const sendEvent = async(topic, data) => {
 const createNewPromocion = async (req, res) => {
   try {
     const p_service = new PromocionService(_db);
-    const promocion = new Promocion(req.body.tipo, req.body.descuento, req.body.descripcion,
+    const tipoPromocion = new TipoPromocion(req.body.tipo);
+    const descripcionPromocion = new DescripcionPromocion(req.body.descripcion);
+    const promocion = new Promocion(tipoPromocion, req.body.descuento, descripcionPromocion,
       req.body.fechaInicioPromo, req.body.fechaFinalPromo);
     const saved_promocion = p_service.save(promocion);
     sendEvent('new_promotion', promocion);
