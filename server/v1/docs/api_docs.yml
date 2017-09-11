@@ -272,6 +272,8 @@ definitions:
         type: string
       fechaFinalPromo:
         type: string
+      color:
+        type: string
   Carrera:
     type: object
     properties:

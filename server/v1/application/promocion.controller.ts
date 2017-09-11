@@ -34,7 +34,7 @@ const createNewPromocion = async (req, res) => {
     const tipoPromocion = new TipoPromocion(req.body.tipo);
     const descripcionPromocion = new DescripcionPromocion(req.body.descripcion);
     const promocion = new Promocion(tipoPromocion, req.body.descuento, descripcionPromocion,
-      req.body.fechaInicioPromo, req.body.fechaFinalPromo);
+      req.body.fechaInicioPromo, req.body.fechaFinalPromo, req.body.color);
     const saved_promocion = await p_service.save(promocion);
     sendEvent('new_promotion', promocion);
     return res.json(promocion);
