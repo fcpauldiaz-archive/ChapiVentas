@@ -150,13 +150,6 @@ paths:
       summary: "Obtener todas las promociones"
       description: "Obtener todas las promociones"
       operationId: "listUsersGET"
-      parameters:
-      - name: "PromocionDelete"
-        in: "body"
-        description: "Id Promocion"
-        required: true
-        schema:
-          $ref: "#/definitions/PromocionID"
       responses:
         200:
           description: "Promocion"
@@ -174,6 +167,13 @@ paths:
       summary: "Eliminar una promoción"
       description: "Eliminar una promoción por ID"
       operationId: "deletePromocion"
+      parameters:
+      - name: "PromocionDelete"
+        in: "body"
+        description: "Id Promocion"
+        required: true
+        schema:
+          $ref: "#/definitions/PromocionID"
       responses:
         200:
           description: "Promocion"

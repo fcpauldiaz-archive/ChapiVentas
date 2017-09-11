@@ -1,5 +1,18 @@
-
 var amqp = require('amqplib/callback_api');
+
+function makeid() {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < 5; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
+
+function randomDate(start, end) {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+}
 
 amqp.connect('amqp://localhost', function(err, conn) {
   conn.createChannel(function(err, ch) {
@@ -7,19 +20,19 @@ amqp.connect('amqp://localhost', function(err, conn) {
       var q = 'receive_sales';
       for (var i = 0 ; i < 2; i++) {
         var transaction = {
-          date: '2017-08-09',
+          date: randomDate(new Date(2012, 0, 1), new Date()),
           product: {
-            product_name: 'Bananos',
-            product_price: 20
+            product_name: makeid(),
+            product_price: Math.round(Math.random() * (5000 - 0) + 0)
           },
           invoice: {
-            amount: 123,
+            amount: Math.round(Math.random() * (5000 - 1) + 1),
             invoice_identifier: 1
           },
           store: {
             store_name: 'Tienda Centro'
           },
-          quantity: 1
+          quantity: Math.round(Math.random() * (100 - 1) + 1)
         };
         //transactions.push(transaction);
 
