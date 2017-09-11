@@ -16,8 +16,7 @@ export class PromocionService {
 
   async obtenerPromocionesPorFecha(fechaInicio, fechaFinal) {
     const promociones = await this._db.dbList('promociones');
-    const promocionesFiltradas = promociones.filter((promocion) => (fechaInicio - promocion.fechaInicioPromo >= 0 && 0 >= fechaFinal - promocion.fechaFinalPromo));
-    
+    const promocionesFiltradas = promociones.filter((promocion) => (fechaInicio - promocion.fechaInicioPromo <= 0 && 0 <= fechaFinal - promocion.fechaFinalPromo));
     return promocionesFiltradas;
   }
 

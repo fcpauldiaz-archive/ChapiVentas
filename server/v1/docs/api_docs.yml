@@ -74,7 +74,7 @@ paths:
         default:
           description: "Unexpected error"
           schema:
-            $ref: "#/definitions/Error" 
+            $ref: "#/definitions/Error"
   /carrera/fecha:
     post:
       tags:
@@ -98,7 +98,7 @@ paths:
         default:
           description: "Unexpected error"
           schema:
-            $ref: "#/definitions/Error" 
+            $ref: "#/definitions/Error"
     get:
       tags:
       - "Carrera Fechas"
@@ -114,7 +114,7 @@ paths:
         default:
           description: "Unexpected error"
           schema:
-            $ref: "#/definitions/Error"      
+            $ref: "#/definitions/Error"
   /promocion:
     post:
       tags:
@@ -139,6 +139,24 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
+    get:
+      tags:
+      - "Promocion"
+      summary: "Obtener todas las promociones"
+      description: "Obtener todas las promociones"
+      operationId: "listUsersGET"
+      responses:
+        200:
+          description: "Promocion"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Promocion"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+  /promocion/query:
     get:
       tags:
       - "Promocion"
@@ -169,6 +187,48 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
+  /ventas:
+    post:
+      tags:
+      - "Ventas"
+      summary: "Crear Venta"
+      description: "Crear Venta en una fecha"
+      operationId: "postVenta"
+      parameters:
+      - name: "Venta"
+        in: "body"
+        description: "Venta object"
+        required: true
+        schema:
+          $ref: "#/definitions/VentaPost"
+
+      responses:
+        200:
+          description: ""
+          schema:
+            type: "string"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+    get:
+      tags:
+      - "Ventas"
+      summary: "Obtener todas las ventas"
+      description: "Obtener todas las Ventas"
+      operationId: "listVentas"
+      responses:
+        200:
+          description: "Ventas"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/VentaList"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+
 definitions:
   Promocion:
     type: object
@@ -192,18 +252,72 @@ definitions:
         type: string
       estudiantes:
         type: integer
-  CarreraFecha: 
+  CarreraFecha:
     type: object
     properties:
       carrera_id:
         type: string
       fecha:
         type: string
-  CarreraFechaMes: 
+  CarreraFechaMes:
     type: object
     properties:
       month:
         type: integer
+  VentaPost:
+    type: object
+    properties:
+      date:
+        type: string
+      product:
+        type: object
+        properties:
+          product_name:
+            type: string
+          product_price:
+            type: number
+      invoice:
+        type: object
+        properties:
+          amount:
+            type: number
+          invoice_identifier:
+            type: number
+      quantity:
+        type: number
+  VentaList:
+    type: object
+    properties:
+      fecha:
+        type: object
+        properties:
+          fechaEvento:
+            type: string
+      producto:
+        type: object
+        properties:
+          nombreProducto:
+            type: object
+            properties:
+              nombre:
+                type: string
+          valorMonetario:
+            type: object
+            properties:
+              moneda:
+                type: string
+              precio:
+                type: number
+      totalVenta:
+        type: object
+        properties:
+          moneda:
+            type: string
+          precio:
+            type: number
+      cantidad:
+        type: number
+
   Error:
     type: "object"
     properties:

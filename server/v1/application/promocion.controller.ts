@@ -17,10 +17,10 @@ const getMesPromociones = async (req, res) => {
 
 const sendEvent = async(topic, data) => {
  try {
-    const conn = await amqp.connect('amqp://localhost')
+    const conn = await amqp.connect('amqp://localhost');
     const ch = await conn.createChannel();
-    //await ch.assertQueue(topic);
-    ch.sendToQueue(topic, new Buffer.from(JSON.stringify(data)););
+    ch.assertQueue(topic, { durable: true });
+    ch.sendToQueue(topic, new Buffer.from(JSON.stringify(data)));
     console.log('promotion sent');
  } catch (e) {
    console.log(e);
@@ -35,7 +35,7 @@ const createNewPromocion = async (req, res) => {
     const descripcionPromocion = new DescripcionPromocion(req.body.descripcion);
     const promocion = new Promocion(tipoPromocion, req.body.descuento, descripcionPromocion,
       req.body.fechaInicioPromo, req.body.fechaFinalPromo);
-    const saved_promocion = p_service.save(promocion);
+    const saved_promocion = await p_service.save(promocion);
     sendEvent('new_promotion', promocion);
     return res.json(promocion);
 

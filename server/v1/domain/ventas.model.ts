@@ -21,7 +21,7 @@ export class ReporteVentas implements ReporteVentasInterface {
     for (let i = 0; i < this.ventas.length; i++) {
       const venta = this.ventas[i];
       if (fechaInicio > venta.fecha.fechaEvento && venta.fecha.fechaEvento < fechaFinal) {
-        totalVentas = totalVentas + venta.totalVenta;
+        totalVentas = totalVentas + venta.totalVenta.precio;
       }
     }
     return totalVentas;

@@ -6,7 +6,7 @@ export class Producto {
   valorMonetario: ValorMonetario;
 
   constructor(nombre: string, precio: number, moneda: string) {
-    this.nombreProducto = new NombreProducto(nombre).nombre;
+    this.nombreProducto = new NombreProducto(nombre);
     this.valorMonetario = new ValorMonetario(moneda, precio);
   }
 
