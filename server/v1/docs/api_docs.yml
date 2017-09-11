@@ -161,7 +161,8 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-    delete:
+  /promocion/delete:
+    post:
       tags:
       - "Promocion"
       summary: "Eliminar una promoción"
