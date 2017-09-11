@@ -6,7 +6,7 @@ export class DateCareerStorageService {
     this._db = dbService;
   }
 
-  save(date_career) {
-    return this._db.insertOne('date_career', (date_career));
+  async save(date_career) {
+    return await this._db.insertOne('date_career', (date_career));
   }
 }

@@ -1,11 +1,18 @@
+import { Carrera } from './carrera.model';
+import { Promocion } from './promocion.model';
 
 export class CarreraFecha {
-  carrera_id: string;
-  fecha: Date;
 
-  constructor(carrera_id: string, fecha: Date) {
-    this.carrera_id = carrera_id;
-    this.fecha = fecha;
+  fechaEvento: Date;
+  titulo: string;
+  descripcion: string;
+  carreras: Carrera[];
+  promociones: Promocion[];
+
+ constructor(fecha: string, descripcion: string, titulo: string) {
+    this.fechaEvento = new Date(fecha);
+    this.descripcion = descripcion;
+    this.titulo = titulo;
   }
 
 }

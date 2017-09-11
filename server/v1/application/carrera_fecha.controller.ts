@@ -8,10 +8,11 @@ const createCarreraFecha = async (req, res) => {
   try {
     const cf_service = new DateCareerStorageService(_db);
 
-    const carrera_fecha_model = new CarreraFecha(req.body.carrera_id, req.body.fecha);
+    const carrera_fecha_model = new CarreraFecha(req.body.fecha, req.body.descripcion, req.body.titulo);
     const carrera_fecha = await cf_service.save(carrera_fecha_model);
     return res.json(carrera_fecha_model);
   } catch (e) {
+    console.log(e);
     return res.json(e);
   }
 }

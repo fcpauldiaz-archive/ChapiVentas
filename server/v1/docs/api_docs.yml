@@ -51,7 +51,23 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-  /carrera/fecha/mes:
+  /carrera/fecha:
+    get:
+      tags:
+      - "Carrera Fechas"
+      summary: "Obtener todas las fechas de una carrera"
+      description: "Retorna todas las fechas importantes para una carrera"
+      operationId: "getCarreraFecha"
+
+      responses:
+        200:
+          description: ""
+          schema:
+            type: "string"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
     post:
       tags:
       - "Carrera Fechas"
@@ -63,6 +79,11 @@ paths:
         in: "body"
         description: "Mes"
         required: true
+        example:
+          ex:
+            fecha: '2017-08-11'
+            titulo: 'Parcial Calculo'
+            descripcion: 'Ing. Aristondo'
         schema:
           $ref: "#/definitions/CarreraFechaMes"
 
@@ -75,7 +96,7 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-  /carrera/fecha:
+  /carrera/fecha/mes:
     post:
       tags:
       - "Carrera Fechas"
@@ -89,22 +110,6 @@ paths:
         required: true
         schema:
           $ref: "#/definitions/CarreraFecha"
-
-      responses:
-        200:
-          description: ""
-          schema:
-            type: "string"
-        default:
-          description: "Unexpected error"
-          schema:
-            $ref: "#/definitions/Error"
-    get:
-      tags:
-      - "Carrera Fechas"
-      summary: "Obtener todas las fechas de una carrera"
-      description: "Retorna todas las fechas importantes para una carrera"
-      operationId: "getCarreraFecha"
 
       responses:
         200:
@@ -286,8 +291,12 @@ definitions:
   CarreraFechaMes:
     type: object
     properties:
-      month:
-        type: integer
+      fecha:
+        type: string
+      titulo:
+        type: string
+      descripcion:
+        type: string
   PromocionID:
     type: object
     properties:
