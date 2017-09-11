@@ -58,4 +58,16 @@ const getPromocionFecha = async (req, res) => {
   }
 }
 
-export default { getMesPromociones, createNewPromocion, getPromocionFecha };
+const deletePromocion = async (req, res) => {
+  try {
+    const p_service = new PromocionService(_db);
+    const response = await p_service.eliminarPromocion(req.body.id);
+    return res.json(response);
+  } catch (e) {
+    console.log(e);
+    return res.json(e);
+  }
+
+}
+
+export default { getMesPromociones, createNewPromocion, getPromocionFecha, deletePromocion };

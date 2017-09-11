@@ -145,6 +145,30 @@ paths:
       summary: "Obtener todas las promociones"
       description: "Obtener todas las promociones"
       operationId: "listUsersGET"
+      parameters:
+      - name: "PromocionDelete"
+        in: "body"
+        description: "Id Promocion"
+        required: true
+        schema:
+          $ref: "#/definitions/PromocionID"
+      responses:
+        200:
+          description: "Promocion"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Promocion"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+    delete:
+      tags:
+      - "Promocion"
+      summary: "Eliminar una promoción"
+      description: "Eliminar una promoción por ID"
+      operationId: "deletePromocion"
       responses:
         200:
           description: "Promocion"
@@ -264,6 +288,11 @@ definitions:
     properties:
       month:
         type: integer
+  PromocionID:
+    type: object
+    properties:
+      id:
+        type: string
   VentaPost:
     type: object
     properties:

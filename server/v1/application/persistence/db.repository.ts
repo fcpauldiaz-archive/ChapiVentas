@@ -1,4 +1,5 @@
 import { getDB, connectDB, disconnectDB } from './db';
+const ObjectID = require('mongodb').ObjectID;
 
 connectDB((err) => {
   if (err != null) {
@@ -24,5 +25,10 @@ const dbList = async (location) => {
   return await _db.collection(location).find().toArray();
 }
 
+const removeDocument = async (location, id) => {
+  const _db = getDB();
+  const response = await _db.collection(location).deleteOne({ _id: ObjectID(id) });
+}
 
-export default { insertMany, dbList, insertOne };
+
+export default { insertMany, dbList, insertOne, removeDocument };

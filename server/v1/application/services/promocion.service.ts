@@ -20,5 +20,9 @@ export class PromocionService {
     return promocionesFiltradas;
   }
 
+  async eliminarPromocion(id) {
+    return await this._db.removeDocument('promociones', id);
+  }
+
 
 }

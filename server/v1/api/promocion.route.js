@@ -12,7 +12,8 @@ const router = express.Router(); // eslint-disable-line new-cap
  */
 router.route('/')
   .get(promocionController.getMesPromociones)
-  .post(promocionController.createNewPromocion);
+  .post(promocionController.createNewPromocion)
+  .delete(promocionController.deletePromocion);
 
 router.route('/query')
   .get(promocionController.getPromocionFecha);
