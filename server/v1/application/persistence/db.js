@@ -1,6 +1,7 @@
 
  const MongoClient = require('mongodb').MongoClient;
- const uri = 'mongodb://localhost:27017/chapiventas';
+ import config from '../../../../config/config';
+ const uri = config.mongoUri;
  let _db;
 
  const connectDB = async (callback) => {
