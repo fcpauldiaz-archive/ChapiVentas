@@ -5,7 +5,6 @@ import chai, { expect } from 'chai';
 import app from '../../../index';
 import config from '../../../config/config';
 
-chai.config.includeStack = true;
 
 describe('## Auth APIs', () => {
   const validUserCredentials = {

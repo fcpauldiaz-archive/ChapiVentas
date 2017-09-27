@@ -1,4 +1,5 @@
-import express from 'express';
+import express  = require('express');
+
 import userRoutes from './user.route';
 import carreraRoutes from './carrera.route';
 import promocionRoutes from './promocion.route';
