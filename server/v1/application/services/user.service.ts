@@ -6,7 +6,13 @@ export class UserService {
     this._db = dbService;
   }
 
-  save(user) {
+  async save(user) {
+    const users = await this._db.dbList('user');
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].username === user.username) {
+        return 'User already exists';
+      }
+    }
     return this._db.insertOne('user', (user));
   }
 
@@ -35,6 +41,10 @@ export class UserService {
       }
     }
     return 'not_found';
+  }
+
+  async eliminarUsuario(id) {
+    return await this._db.removeDocument('user', id);
   }
 
 

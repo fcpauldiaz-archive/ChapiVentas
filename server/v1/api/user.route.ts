@@ -18,4 +18,7 @@ router.route('/:username')
 router.route('/auth')
   .post(userController.authenticate);
 
+router.route('/delete/:userId')
+  .get(userController.deleteUser);
+
 export default router;

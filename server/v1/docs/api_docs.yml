@@ -6,7 +6,7 @@ info:
   title: "ChapiVentas API"
 basePath: "/api"
 schemes:
-- "https"
+- "http"
 consumes:
   - application/json
 paths:
@@ -319,6 +319,28 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Usuario"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+  /users/delete/{userId}:
+    get:
+      tags:
+      - "User"
+      summary: "Eliminar usuario"
+      description: "Eliminar usuario"
+      operationId: "deleteUser"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "Usuario id"
+        required: true
+        type: string
+      responses:
+        200:
+          description: ""
+          schema:
+            type: "string"
         default:
           description: "Unexpected error"
           schema:

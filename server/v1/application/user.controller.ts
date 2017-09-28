@@ -57,13 +57,24 @@ const authenticate = async (req, res) => {
   } catch (e) {
     return res.json(e);
   }
-}
+};
+
+const deleteUser = async (req, res) => {
+  try {
+    const u_service = new UserService(_db);
+    const usr = await u_service.eliminarUsuario(req.params.userId);
+    return res.json(usr);
+  } catch (e) {
+    return res.json(e);
+  }
+};
 
 
 export default {
   get,
   create,
   list,
-  authenticate
+  authenticate,
+  deleteUser
 };
 
