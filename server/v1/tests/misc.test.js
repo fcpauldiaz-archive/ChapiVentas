@@ -12,7 +12,6 @@ describe('## Misc', () => {
         .get('/')
         .expect(httpStatus.OK)
         .then((res) => {
-          console.log(res)
           done();
         })
         .catch(done);
