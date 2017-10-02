@@ -5,11 +5,11 @@ import chai, { expect } from 'chai';
 import app from '../../../index';
 import config from '../../../config/config';
 
-describe('## Misc', () => {
-  describe('# GET /', () => {
-    it('should return OK', (done) => {
+describe('## Venta Tests', () => {
+  describe('# GET /api/ventas', () => {
+    it('should return all ventas', (done) => {
       request(app)
-        .get('/')
+        .get('/api/ventas')
         .expect(httpStatus.OK)
         .then((res) => {
           done();

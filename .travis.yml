@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "4.8"
+  - "6.8"
   - "7.6"
 addons:
   apt:
@@ -18,6 +18,4 @@ cache:
 git:
   depth: 3
 script:
-  - yarn test:check-coverage
-after_script:
-  - yarn report-coverage
+  - yarn test

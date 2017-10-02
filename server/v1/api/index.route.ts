@@ -1,4 +1,5 @@
-import express from 'express';
+import express  = require('express');
+
 import userRoutes from './user.route';
 import carreraRoutes from './carrera.route';
 import promocionRoutes from './promocion.route';
@@ -13,7 +14,7 @@ router.get('/health-check', (req, res) =>
 );
 
 // mount user routes at /users
-// router.use('/users', userRoutes);
+router.use('/users', userRoutes);
 
 // mount post routes at /post
 router.use('/carrera', carreraRoutes);

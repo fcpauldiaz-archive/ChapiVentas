@@ -2,7 +2,7 @@
 var amqp = require('amqplib/callback_api');
 var request = require('request');
 
-amqp.connect('amqp://localhost', function(err, conn) {
+amqp.connect('amqp://13.58.81.154', function(err, conn) {
   conn.createChannel(function(err, ch) {
     var q = 'receive_sales';
 
@@ -14,7 +14,7 @@ amqp.connect('amqp://localhost', function(err, conn) {
       console.log(content);
       // send post to api
       var options = { method: 'POST',
-        url: 'http://localhost:3000/api/ventas',
+        url: 'https://chapi-ventas-api-staging.herokuapp.com/api/ventas',
         headers:
          { 'postman-token': 'bd4c0a5f-1a2a-eef3-c955-fc614d4cbeb9',
            'cache-control': 'no-cache',

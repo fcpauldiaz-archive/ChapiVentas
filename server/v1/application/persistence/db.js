@@ -1,4 +1,4 @@
-
+import polyfill from 'babel-polyfill'; // eslint-disable-line
  const MongoClient = require('mongodb').MongoClient;
  import config from '../../../../config/config';
  const uri = config.mongoUri;
