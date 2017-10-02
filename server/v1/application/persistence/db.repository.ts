@@ -1,4 +1,5 @@
 import { getDB, connectDB, disconnectDB } from './db';
+import polyfill from 'babel-polyfill'; // eslint-disable-line
 const ObjectID = require('mongodb').ObjectID;
 
 connectDB((err) => {

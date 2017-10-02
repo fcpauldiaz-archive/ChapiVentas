@@ -17,7 +17,7 @@ const getMesPromociones = async (req, res) => {
 
 const sendEvent = async(topic, data) => {
  try {
-    const conn = await amqp.connect('amqp://localhost');
+    const conn = await amqp.connect('amqp://13.58.81.154');
     const ch = await conn.createChannel();
     ch.assertQueue(topic, { durable: true });
     ch.sendToQueue(topic, new Buffer.from(JSON.stringify(data)));

@@ -3,15 +3,14 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import path from 'path';
 import del from 'del';
 import runSequence from 'run-sequence';
-import ts from "gulp-typescript";
-
+import ts from 'gulp-typescript';
 
 const plugins = gulpLoadPlugins();
 
 const paths = {
   js: ['./**/*.js', '!dist/**', '!node_modules/**', '!coverage/**', '!react_docs/**', '!server/v1/event_sourcing/node_modules/**'],
   nonJs: ['./package.json', './.gitignore', './.env'],
-  tests: './server/tests/*.js'
+  tests: './server/tests/*.ts'
 };
 
 // Clean up dist and coverage directory
@@ -25,6 +24,25 @@ gulp.task('copy', () =>
     .pipe(plugins.newer('dist'))
     .pipe(gulp.dest('dist'))
 );
+
+
+gulp.task('typescript1', () => {
+  gulp.src('*.ts')
+    .pipe(ts({
+        noImplicitAny: false,
+        lib: ['es5', 'es2015', 'es2016']
+    }))
+    .js.pipe(gulp.dest('dist/'))
+});
+
+gulp.task('typescript2', () => {
+  gulp.src('config/*.ts')
+    .pipe(ts({
+        noImplicitAny: false,
+        lib: ['es5', 'es2015', 'es2016']
+    }))
+    .js.pipe(gulp.dest('dist/config/'))
+});
 
 gulp.task('typescript', () => {
   gulp.src('server/v1/**/*.ts')
@@ -57,12 +75,12 @@ gulp.task('babel', () =>
 );
 
 // Start server with restart on file changes
-gulp.task('nodemon', ['copy', 'typescript', 'babel'], () =>
+gulp.task('nodemon', ['copy', 'typescript', 'typescript1','typescript2', 'babel'], () =>
   plugins.nodemon({
     script: path.join('dist', 'index.js'),
     ext: 'js ts',
     ignore: ['node_modules/**/*.js', 'dist/**/*.js', 'server/v1/event_sourcing/node_modules/**/*.js'],
-    tasks: ['copy', 'babel', 'typescript']
+    tasks: ['copy', 'babel', 'typescript', 'typescript1', 'typescript2']
   })
 );
 
@@ -72,6 +90,6 @@ gulp.task('serve', ['clean'], () => runSequence('nodemon'));
 // default task: clean dist, compile js files and copy non-js files.
 gulp.task('default', ['clean'], () => {
   runSequence(
-    ['copy', 'babel', 'copyDocs', 'typescript']
+    ['copy', 'babel', 'copyDocs', 'typescript', 'typescript1', 'typescript2']
   );
 });

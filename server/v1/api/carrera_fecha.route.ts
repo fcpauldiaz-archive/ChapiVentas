@@ -1,6 +1,7 @@
-import express from 'express';
-import validate from 'express-validation';
-import expressJwt from 'express-jwt';
+import express  = require('express');
+import validate = require('express-validation');
+import expressJwt = require('express-jwt');
+
 import paramValidation from '../../../config/param-validation';
 import carreraFechaCtrl from '../application/carrera_fecha.controller';
 

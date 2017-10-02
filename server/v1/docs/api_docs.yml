@@ -6,7 +6,7 @@ info:
   title: "ChapiVentas API"
 basePath: "/api"
 schemes:
-- "https"
+- "http"
 consumes:
   - application/json
 paths:
@@ -258,8 +258,124 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
+  /users:
+    post:
+      tags:
+      - "User"
+      summary: "Crear Usuario"
+      description: "Crear Usuario"
+      operationId: "postUsuario"
+      parameters:
+      - name: "usuario"
+        in: "body"
+        description: "Usuario object"
+        required: true
+        schema:
+          $ref: "#/definitions/Usuario"
 
+      responses:
+        200:
+          description: ""
+          schema:
+            type: "string"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+    get:
+      tags:
+      - "User"
+      summary: "Obtener todos los users"
+      description: "Obtener todos los users"
+      operationId: "listUser"
+      responses:
+        200:
+          description: "Usuario"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Usuario"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+  /users/{username}:
+    get:
+      tags:
+      - "User"
+      summary: "Obtener un usuario"
+      description: "Obtener un usuario"
+      operationId: "listUser"
+      parameters:
+      - name: "username"
+        in: path
+        description: "Username of user"
+        required: true
+        type: string
+      responses:
+        200:
+          description: "Usuario"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Usuario"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+  /users/delete/{userId}:
+    get:
+      tags:
+      - "User"
+      summary: "Eliminar usuario"
+      description: "Eliminar usuario"
+      operationId: "deleteUser"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "Usuario id"
+        required: true
+        type: string
+      responses:
+        200:
+          description: ""
+          schema:
+            type: "string"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+  /users/auth:
+    post:
+      tags:
+      - "User"
+      summary: "Autenticar usuario"
+      description: "Autenticar Usuario"
+      operationId: "authUser"
+      parameters:
+      - name: "usuario"
+        in: "body"
+        description: "Usuario object"
+        required: true
+        schema:
+          $ref: "#/definitions/Usuario"
+      responses:
+        200:
+          description: ""
+          schema:
+            type: "string"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
 definitions:
+  Usuario:
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
   Promocion:
     type: object
     properties:
