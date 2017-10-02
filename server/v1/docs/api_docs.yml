@@ -6,7 +6,7 @@ info:
   title: "ChapiVentas API"
 basePath: "/api"
 schemes:
-- "http"
+- "https"
 consumes:
   - application/json
 paths:
