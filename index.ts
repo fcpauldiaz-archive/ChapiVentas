@@ -1,3 +1,4 @@
+require('newrelic');
 // config should be imported before importing any other file
 import polyfill from 'babel-polyfill'; // eslint-disable-line
 import config from './config/config';  // eslint-disable-line

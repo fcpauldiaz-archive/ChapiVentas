@@ -14,7 +14,7 @@ function randomDate(start, end) {
     return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 }
 
-amqp.connect('amqp://localhost', function(err, conn) {
+amqp.connect('amqp://test:test@13.58.81.154', function(err, conn) {
   conn.createChannel(function(err, ch) {
       var transactions = [];
       var q = 'receive_sales';
