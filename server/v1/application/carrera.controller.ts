@@ -18,13 +18,18 @@ var client = new StatsD({
  * @return Carrera[]
  */
 const getAll = async (req, res ) => {
+  let startingDate = new Date();
   try {
     const c_service = new CarreraReadingService(_db);
     const carreras = await  c_service.obtenerCarreras();
-    client.increment('get_all_careers');
-    client.timing('my_response_time', 4200);
+    let timeDiff = (new Date()).valueOf() - (startingDate).valueOf()
+    client.increment('careers_get_success');
+    client.timing('careers_get_response_time', timeDiff);
     return res.json(carreras);
   } catch (err) {
+    let timeDiff = (new Date()).valueOf() - (startingDate).valueOf()
+    client.increment('careers_get_error');
+    client.timing('careers_get_response_time', timeDiff);
     return res.json(err);
   }
 };
@@ -36,6 +41,7 @@ const getAll = async (req, res ) => {
  * @return {string[]} List of entities
  */
 const createNewCarrera = async (req, res) => {
+  let startingDate = new Date();
   let invalidParams = [];
   let carreraNombre: NombreCarrera = new NombreCarrera(req.body.nombre);
   let descripcionCarrera: DescripcionCarrera = new DescripcionCarrera(req.body.descripcion);
@@ -51,6 +57,7 @@ const createNewCarrera = async (req, res) => {
 
   if(invalidParams.length > 0) {
     res.status(400);
+    client.increment('careers_create_invalid_params');
     return res.json({"mensaje": "Parámetros inválidos", "parametros_invalidos": invalidParams})
   }
 
@@ -59,9 +66,15 @@ const createNewCarrera = async (req, res) => {
     const carrera = new Carrera(carreraNombre, descripcionCarrera, req.body.estudiantes);
     const saved_carrera = c_service.save(carrera);
     res.status(200);
+    let timeDiff = (new Date()).valueOf() - (startingDate).valueOf()
+    client.increment('careers_create_success');
+    client.timing('careers_create_response_time', timeDiff);
     return res.json(saved_carrera);
   } catch (e){
     res.status(500);
+    let timeDiff = (new Date()).valueOf() - (startingDate).valueOf()
+    client.increment('careers_create_error');
+    client.timing('careers_create_response_time', timeDiff);
     return res.json(e);
   }
 }
