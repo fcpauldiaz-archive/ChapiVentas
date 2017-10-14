@@ -80,6 +80,7 @@
     "multer-s3": "^2.7.0",
     "mysql2": "^1.4.2",
     "newrelic": "^2.2.2",
+    "node-statsd": "0.1.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "pg": "^6.4.1",

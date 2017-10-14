@@ -7,22 +7,27 @@ import { CarreraStorageService } from './services/storage/carrera.storage';
 import { NombreCarrera } from '../domain/value_objects/nombre_carrera.model';
 import { DescripcionCarrera } from '../domain/value_objects/descripcion_carrera.model';
 
+import { StatsD } from 'node-statsd/lib/statsd';
+
+var client = new StatsD({
+  host: 'ec2-52-90-161-71.compute-1.amazonaws.com'
+})
+
 /**
  * Get all entities
  * @return Carrera[]
  */
 const getAll = async (req, res ) => {
   try {
-
     const c_service = new CarreraReadingService(_db);
     const carreras = await  c_service.obtenerCarreras();
-
+    client.increment('get_all_careers');
+    client.timing('my_response_time', 4200);
     return res.json(carreras);
   } catch (err) {
     return res.json(err);
   }
 };
-
 /**
  * Create new entity
  * @param {string}  req.body.nombre  [Name of career]
